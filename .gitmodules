@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/MaximOksiuta/InoagentVPNBackend.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/MaximOksiuta/InoagentVPNFrontend.git
