@@ -18,6 +18,19 @@
 
 - `frontend` — production-сборка React-приложения, раздаётся через `nginx`
 - `backend` — Ktor API на Java 17
+- `tg_bot` — Telegram-бот на Kotlin, использующий тот же API
 - `backend_data` — именованный volume для SQLite базы
 
 `nginx` проксирует `/api`, `/docs`, `/swagger`, `/api.json` и `/health` в backend, поэтому фронтенд и API работают с одного домена.
+
+## Telegram Bot
+
+Бот находится в папке [tg_bot](/Users/max/shit/vpn-auto/tg_bot:1).
+
+Для запуска вместе с проектом:
+
+```bash
+./docker-up.sh
+```
+
+Нужно дополнительно задать `TG_BOT_TOKEN` в `.env`. Бот использует тот же `SUPER_KEY`, что и backend.

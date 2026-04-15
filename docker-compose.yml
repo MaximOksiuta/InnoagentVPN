@@ -27,5 +27,20 @@ services:
       - "${APP_PORT:-80}:80"
     restart: unless-stopped
 
+  tg_bot:
+    build:
+      context: ./tg_bot
+    depends_on:
+      - backend
+    environment:
+      TG_BOT_TOKEN: ${TG_BOT_TOKEN:-}
+      TG_SUPER_KEY: ${SUPER_KEY:-}
+      TG_BOT_API_BASE_URL: ${TG_BOT_API_BASE_URL:-http://backend:8080}
+      TG_BOT_DATA_DIR: /app/data
+    volumes:
+      - tg_bot_data:/app/data
+    restart: unless-stopped
+
 volumes:
   backend_data:
+  tg_bot_data:
