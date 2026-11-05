@@ -1,0 +1,13 @@
+services:
+  tg_bot:
+    image: inoagentbot-tg_bot:release-20261105
+    environment:
+      TG_BOT_TOKEN: ${TG_BOT_TOKEN:?required}
+      TG_SUPER_KEY: ${SUPER_KEY:?required}
+      TG_BOT_API_BASE_URL: https://vpn.oksiuta.ru
+      TG_BOT_DATA_DIR: /app/data
+    volumes:
+      - bot_data:/app/data
+    restart: unless-stopped
+volumes:
+  bot_data:

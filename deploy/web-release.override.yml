@@ -1,0 +1,5 @@
+services:
+  backend:
+    image: innoagentvpn-backend:release-20261105
+  frontend:
+    image: innoagentvpn-frontend:release-20261105

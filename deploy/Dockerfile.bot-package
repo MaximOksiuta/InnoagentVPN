@@ -1,0 +1,6 @@
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY bot-dist /app
+RUN useradd --system --create-home --uid 10001 appuser && mkdir -p /app/data && chown -R appuser:appuser /app
+USER appuser
+CMD ["/app/bin/tg_bot"]

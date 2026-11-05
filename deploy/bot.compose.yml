@@ -1,0 +1,25 @@
+services:
+  tg_bot:
+    build: ./tg_bot
+    environment:
+      TG_BOT_TOKEN: ${TG_BOT_TOKEN:?required}
+      TG_SUPER_KEY: ${SUPER_KEY:?required}
+      TG_BOT_API_BASE_URL: https://vpn.oksiuta.ru
+      TG_BOT_DATA_DIR: /app/data
+    volumes:
+      - bot_data:/app/data
+    restart: unless-stopped
+  probe:
+    image: caddy:2.10-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+volumes:
+  bot_data:
+  caddy_data:
+  caddy_config:
