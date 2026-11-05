@@ -53,3 +53,11 @@ Complete a real Telegram contact-sharing reset manually from the account owner; 
 Post-deployment verification: SQLite integrity is `ok`; SHA-256 hashes of all existing columns and all rows of users/devices/device_servers/servers exactly match the pre-change backup (15 users, 53 devices, 75 configs, 4 servers). The bot sessions file hash also matches before/after migration. Both runtime containers are running; the old bot is stopped.
 Frontend production dependencies pass `npm audit --omit=dev`; seven moderate findings remain in development-only ESLint tooling.
 The public login screen was visually checked after deployment. Browser checks on older hosts require provisioning their HTTPS probes. The VPN node `186.246.18.21` became unreachable over SSH/HTTPS during final checks, so its probe/certificate and staging-credential cleanup could not be confirmed.
+
+## Added VPN node
+
+At the user's subsequent request, `82.148.252.240` was added as `London`, server #5, with `amnezia-awg2`, `awg0`, `/opt/amnezia/awg`, SSH root on port 22. London/UK is the GeoIP label, not a physical-location guarantee.
+After explicit approval, a dedicated Ed25519 service key was generated in the persistent backend volume at `/app/data/ssh/server-82.148.252.240` (private mode 0600, owned by uid 10001). Only its public key was installed on the VPN host, with `restrict,from="72.56.33.224"`. The prior authorized_keys was backed up on that host under `/root/backups/inoagent-before-20261105/authorized_keys.before-vpn-server`.
+A read-only `AwgServerScripts.listUsers()` invocation from the actual backend container authenticated and read the existing AWG peer successfully before creation. No new VPN peer was created for testing.
+The new node also runs `inoagentprobe-probe-1` using `Caddyfile.london` and `probe.compose.yml`; the web release override explicitly allows its browser probe.
+The four previous cards were subsequently retired through DELETE requests in the live website; their rows, saved configurations and peers remain preserved. They were not automatically retired by migration.

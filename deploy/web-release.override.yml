@@ -1,5 +1,7 @@
 services:
   backend:
     image: innoagentvpn-backend:release-20261105
+    environment:
+      SERVER_PROBE_HOSTS: "186.246.18.21,82.148.252.240"
   frontend:
     image: innoagentvpn-frontend:release-20261105
