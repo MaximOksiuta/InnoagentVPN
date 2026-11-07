@@ -35,3 +35,28 @@ The original named volumes remain in use. Do not use `down -v`.
 Queue shutdown gets a 45-second grace period; unfinished records resume after restart. Inspect `/api/generation/jobs` and retry failed items after resolving SSH/server issues.
 
 Rollback: the previous release directories and release-20261105 image tags are retained. Stop the new backend cleanly before switching back; old code ignores the additive tables, but pending jobs will wait until the new version runs again. Never restore an older DB over new user data just to roll back code.
+
+## Verified deployment — 2026-11-08
+
+Frontend identity: custom route mark, SVG connection diagrams, copper accents on
+graphite, route reveal and dialog motion with prefers-reduced-motion support.
+Design direction and applied skill are documented in frontend/DESIGN.md.
+Desktop and mobile sign-in and the desktop workspace were visually inspected.
+
+Backend: 33 tests passed; bot: 2 tests passed; frontend lint and production build
+passed. Both service hosts run release-20261107 images; /health responds 200.
+
+A fresh online snapshot at `app-before-switch.db` passed integrity_check.
+Snapshot SHA-256: `71a363c5ca6ae97982fbac9573c04db208c15ead4a71a6759922e95de2b10601`.
+Every existing users/devices/device_servers/servers row was compared with that
+snapshot after rollout and after QA: unchanged. Final counts were 15 users,
+53 devices, 89 configs and 5 server rows (a legitimate config was added after
+the earlier 88-config baseline). Notification outbox was empty; no old-server
+broadcast was sent.
+
+Live QA created two temporary administrator-owned devices, queued both on
+London (#5), verified both completed, same-request idempotency, duplicate-pair
+skipping, matching text/file downloads and a valid two-file ZIP. QA devices,
+remote peers and only their queue records were removed. The AWG interface
+ifindex stayed 18 and peer count returned to 16, confirming no interface
+recreation during generation. SQLite integrity_check remained ok.
