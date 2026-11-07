@@ -11,6 +11,8 @@ import org.amnezia.awg.config.Config
 import java.io.ByteArrayInputStream
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 data class TunnelTraffic(val receivedBytes: Long = 0, val sentBytes: Long = 0)
 
@@ -20,6 +22,9 @@ class AmneziaTunnelEngine(context: Context) {
     private var active: NamedTunnel? = null
     private val mutableState=MutableStateFlow(false)
     val connected=mutableState.asStateFlow()
+    private val mutableStop=MutableStateFlow(0)
+    val stopRequests=mutableStop.asStateFlow()
+    private val mutex=Mutex()
 
     suspend fun validate(rawConfig: String) = withContext(Dispatchers.IO) {
         Config.parse(ByteArrayInputStream(rawConfig.toByteArray()))
@@ -27,19 +32,24 @@ class AmneziaTunnelEngine(context: Context) {
     }
 
     suspend fun connect(profile: VpnProfile, rawConfig: String) = withContext(Dispatchers.IO) {
+        mutex.withLock {
         active?.let { backend.setState(it, Tunnel.State.DOWN, null) }
-        val tunnel = NamedTunnel(profile.name)
+        val tunnel = NamedTunnel("inoagent-"+profile.id.toString(36).takeLast(6))
         val config = Config.parse(ByteArrayInputStream(rawConfig.toByteArray()))
         applicationContext.startForegroundService(android.content.Intent(applicationContext,VpnKeepAliveService::class.java))
         try { backend.setState(tunnel, Tunnel.State.UP, config) }
         catch(e:Exception) { applicationContext.stopService(android.content.Intent(applicationContext,VpnKeepAliveService::class.java));throw e }
         active = tunnel
+        }
     }
 
     suspend fun disconnect() = withContext(Dispatchers.IO) {
+        mutableStop.value+=1
+        mutex.withLock {
         active?.let { backend.setState(it, Tunnel.State.DOWN, null) }
         active = null
         applicationContext.stopService(android.content.Intent(applicationContext,VpnKeepAliveService::class.java))
+        }
     }
 
     suspend fun traffic(): TunnelTraffic = withContext(Dispatchers.IO) {

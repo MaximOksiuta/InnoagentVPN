@@ -15,9 +15,11 @@ android {
         targetSdk = 36
         versionCode = 2
         versionName = "0.2.0"
+        testInstrumentationRunner="androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures { compose = true }
+    sourceSets.getByName("androidTest").assets.srcDir("$projectDir/schemas")
     packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
 
     compileOptions {
@@ -50,6 +52,9 @@ dependencies {
     implementation("com.zaneschepke:amneziawg-android:2.3.7")
 
     testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.room:room-testing:2.8.3")
+    androidTestImplementation("androidx.test:runner:1.7.0")
+    androidTestImplementation("androidx.test.ext:junit:1.3.0")
 }
 
 ksp {

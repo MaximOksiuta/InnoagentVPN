@@ -7,6 +7,7 @@ import com.inoagent.vpn.shared.VpnProfile
 import com.inoagent.vpn.shared.AccountController
 import com.inoagent.vpn.data.AndroidVault
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.drop
 import com.inoagent.vpn.tunnel.TunnelTraffic
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,6 +30,7 @@ data class HomeState(
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val container = (application as InoagentApplication).container
+    private var serviceConnectionJob:kotlinx.coroutines.Job?=null
     val accountController=AccountController(viewModelScope,AndroidVault(application),"Android ${android.os.Build.MODEL}")
     val account=accountController.state
     val profiles = combine(container.profiles.profiles,account) { rows,state -> rows.filter { it.accountId==null || it.accountId==state.user?.id } }.stateIn(
@@ -41,6 +43,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val home: StateFlow<HomeState> = _home.asStateFlow()
 
     init {
+        viewModelScope.launch {
+            container.tunnel.stopRequests.drop(1).collect {
+                serviceConnectionJob?.cancel()
+                if(_home.value.connection==ConnectionState.Connecting) _home.value=_home.value.copy(connection=ConnectionState.Disconnected)
+            }
+        }
         viewModelScope.launch {
             container.tunnel.connected.collect { connected ->
                 if(!connected && _home.value.connection==ConnectionState.Connected) _home.value=_home.value.copy(connection=ConnectionState.Disconnected,connectedAtMillis=null,traffic=TunnelTraffic())
@@ -112,8 +120,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             _home.value=_home.value.copy(selectedProfileId=id,connection=ConnectionState.Connected,connectedAtMillis=System.currentTimeMillis())
         } catch(e:kotlinx.coroutines.CancellationException) { throw e }
         catch(e:Exception) { showMessage("Не удалось запустить VPN: ${e.message?.take(160) ?: "проверьте конфигурацию"}") }
-        finally { if(_home.value.connection==ConnectionState.Connecting) { _home.value=_home.value.copy(connection=ConnectionState.Disconnected);getApplication<Application>().stopService(android.content.Intent(getApplication(),com.inoagent.vpn.tunnel.VpnKeepAliveService::class.java)) } }
-    }
+        finally { if(_home.value.connection==ConnectionState.Connecting) _home.value=_home.value.copy(connection=ConnectionState.Disconnected);if(_home.value.connection!=ConnectionState.Connected) getApplication<Application>().stopService(android.content.Intent(getApplication(),com.inoagent.vpn.tunnel.VpnKeepAliveService::class.java)) }
+    }.also { serviceConnectionJob=it }
 
     fun logout() = viewModelScope.launch {
         container.tunnel.disconnect()

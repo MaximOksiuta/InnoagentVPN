@@ -14,12 +14,7 @@ class InoagentApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         val database = Room.databaseBuilder(this, InoagentDatabase::class.java, "inoagent.db")
-            .addMigrations(object:androidx.room.migration.Migration(1,2) {
-                override fun migrate(db:androidx.sqlite.db.SupportSQLiteDatabase) {
-                    db.execSQL("ALTER TABLE profiles ADD COLUMN accountId INTEGER")
-                    db.execSQL("ALTER TABLE profiles ADD COLUMN serverId INTEGER")
-                }
-            }).build()
+            .addMigrations(InoagentDatabase.MIGRATION_1_2).build()
         container = AppContainer(
             profiles = ProfileRepository(database.profiles(), ConfigCipher()),
             tunnel = AmneziaTunnelEngine(this),

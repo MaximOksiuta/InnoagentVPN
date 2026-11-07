@@ -13,6 +13,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
@@ -40,7 +42,7 @@ data class TunnelUi(val connected:Boolean=false,val busy:Boolean=false,val statu
     var tab by remember { mutableIntStateOf(0) }
     MaterialTheme(colorScheme=darkColorScheme(primary=Copper,onPrimary=Graphite,secondary=Copper,secondaryContainer=Color(0xff3c2f27),onSecondaryContainer=Chalk,primaryContainer=Color(0xff3c2f27),onPrimaryContainer=Chalk,background=Graphite,onBackground=Chalk,surface=Surface,onSurface=Chalk,onSurfaceVariant=Muted,outline=Line)) {
         Surface(Modifier.fillMaxSize(),color=Graphite) {
-            Column(Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal=24.dp).widthIn(max=1180.dp)) {
+            Column(Modifier.fillMaxSize().safeDrawingPadding().imePadding().padding(horizontal=24.dp).widthIn(max=1180.dp)) {
                 Row(Modifier.fillMaxWidth().padding(vertical=20.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.SpaceBetween) {
                     Row(verticalAlignment=Alignment.CenterVertically) { RouteMark(Modifier.size(36.dp));Spacer(Modifier.width(10.dp));Text("inoagent",fontSize=24.sp);Text(" vpn",color=Muted,fontSize=12.sp) }
                     TextButton(onClick={onOpenWebsite("https://vpn.oksiuta.ru")}) { Text("Сайт") }
@@ -123,9 +125,9 @@ data class TunnelUi(val connected:Boolean=false,val busy:Boolean=false,val statu
     Panel {
         Text(if(register) "Создать аккаунт" else "С возвращением",fontSize=28.sp)
         Text("Ваш интернет. Ваш маршрут.",color=Muted)
-        OutlinedTextField(phone,{phone=it},label={Text("Номер телефона")},singleLine=true,modifier=Modifier.fillMaxWidth(),enabled=!busy)
+        OutlinedTextField(phone,{phone=it},label={Text("Номер телефона")},keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Phone),singleLine=true,modifier=Modifier.fillMaxWidth(),enabled=!busy)
         if(register) OutlinedTextField(nickname,{nickname=it},label={Text("Имя")},singleLine=true,modifier=Modifier.fillMaxWidth(),enabled=!busy)
-        OutlinedTextField(password,{password=it},label={Text("Пароль")},visualTransformation=PasswordVisualTransformation(),singleLine=true,modifier=Modifier.fillMaxWidth(),enabled=!busy)
+        OutlinedTextField(password,{password=it},label={Text("Пароль")},keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Password),visualTransformation=PasswordVisualTransformation(),singleLine=true,modifier=Modifier.fillMaxWidth(),enabled=!busy)
         Button(onClick={if(register) onRegister(phone,password,nickname) else onLogin(phone,password);password=""},enabled=!busy && phone.isNotBlank() && password.isNotBlank() && (!register || nickname.isNotBlank()),modifier=Modifier.fillMaxWidth()) { Text(if(busy) "Подождите…" else if(register) "Зарегистрироваться" else "Войти") }
         if(busy) RouteSignal(true,false,Modifier.size(90.dp,56.dp))
         TextButton(onClick={register=!register},enabled=!busy) { Text(if(register) "Уже есть аккаунт" else "Создать аккаунт") }

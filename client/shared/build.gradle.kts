@@ -15,10 +15,11 @@ kotlin {
     jvm("desktop")
     val iosArm64 = iosArm64()
     val iosSimulatorArm64 = iosSimulatorArm64()
+    val iosX64 = iosX64()
     val macosArm64 = macosArm64()
     val macosX64 = macosX64()
 
-    listOf(iosArm64, iosSimulatorArm64, macosArm64, macosX64).forEach { target ->
+    listOf(iosArm64, iosSimulatorArm64, iosX64, macosArm64, macosX64).forEach { target ->
         target.binaries.framework {
             baseName = "Shared"
             isStatic = true
@@ -59,4 +60,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+}
+
+val desktopTests=kotlin.targets.getByName("desktop").compilations.getByName("test") as org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJvmCompilation
+tasks.register<JavaExec>("serviceSmoke") {
+    dependsOn("desktopTestClasses")
+    mainClass.set("com.inoagent.vpn.shared.ServiceSmokeKt")
+    classpath(desktopTests.output.allOutputs,desktopTests.runtimeDependencyFiles)
 }
