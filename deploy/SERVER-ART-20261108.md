@@ -38,3 +38,13 @@ Reuse the existing volume and .env. Fresh online SQLite backup goes under
 Rollback uses release-20261107 images and the same current database; no schema
 or user/server/config rows are changed by this feature. Preserve server-art in
 normal volume backups. Never restore an older database merely to roll back UI.
+
+Live verification: five server names produced five files in the persistent
+volume, including archived records. All five public URLs returned valid SVG
+with HTTP 200 and conditional HTTP 304; file bytes matched the saved files and
+modification timestamps did not change on reads. /health returned 200 and the
+published CSS contained the new loader/postcard styles. All pre-switch rows in
+users/devices/device_servers/servers were compared in full: unchanged. Counts
+after rollout: 15 users, 53 devices, 90 configs, 5 servers; integrity_check=ok.
+Fresh backup app.db SHA-256:
+`e9d3c12b476b81b5fae91efcc7699f912e1279cf9c006e27bd4c27cb5d94cac6`.
