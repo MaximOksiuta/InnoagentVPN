@@ -1,0 +1,2 @@
+FROM innoagentvpn-backend:release-20261105
+COPY backend.jar /app/lib/kotlin-1.0-SNAPSHOT.jar

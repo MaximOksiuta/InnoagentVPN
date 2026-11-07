@@ -1,0 +1,2 @@
+FROM inoagentbot-tg_bot:release-20261105
+COPY bot.jar /app/lib/tg_bot-1.0-SNAPSHOT.jar
