@@ -9,7 +9,7 @@ options:
 packages:
   AmneziaWGApple:
     url: https://github.com/amnezia-vpn/amneziawg-apple.git
-    branch: master
+    revision: 9d5ee60edefa95b933a738dd7cda671dd18021fc
 
 settings:
   base:
@@ -98,15 +98,7 @@ targets:
       - name: Build AmneziaWG Go bridge
         basedOnDependencyAnalysis: false
         script: |
-          set -euo pipefail
-          export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-          CHECKOUT_ROOT="${BUILD_DIR%Build/*}SourcePackages/checkouts/amneziawg-apple"
-          GO_BRIDGE="$CHECKOUT_ROOT/Sources/WireGuardKitGo"
-          if [ ! -d "$GO_BRIDGE" ]; then
-            echo "error: Swift Package checkout not found at $GO_BRIDGE"
-            exit 1
-          fi
-          /usr/bin/make -C "$GO_BRIDGE"
+          /bin/bash "$SRCROOT/scripts/build-awg.sh"
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.inoagent.vpn.ios.tunnel
@@ -217,10 +209,7 @@ targets:
       - name: Build AmneziaWG Go bridge
         basedOnDependencyAnalysis: false
         script: |
-          set -euo pipefail
-          export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-          CHECKOUT_ROOT="${BUILD_DIR%Build/*}SourcePackages/checkouts/amneziawg-apple"
-          /usr/bin/make -C "$CHECKOUT_ROOT/Sources/WireGuardKitGo"
+          /bin/bash "$SRCROOT/scripts/build-awg.sh"
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.inoagent.vpn.macos.tunnel

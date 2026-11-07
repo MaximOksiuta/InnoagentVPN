@@ -54,7 +54,15 @@ jobs:
           java-version: '17'
       - uses: actions/setup-go@v5
         with:
-          go-version: '1.24.x'
+          go-version: '1.26.0'
+          cache: false
+      - uses: actions/cache/restore@v4
+        with:
+          path: |
+            ~/.konan
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: apple-client-kotlin-2.2-xcode16-v1
       - run: |
           if [ -d /Applications/Xcode_16.4.app ]; then sudo xcode-select -s /Applications/Xcode_16.4.app; fi
           xcodebuild -version
@@ -72,3 +80,11 @@ jobs:
         with:
           name: Apple-build-logs
           path: client/build-*.log
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            ~/.konan
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: apple-client-kotlin-2.2-xcode16-v1

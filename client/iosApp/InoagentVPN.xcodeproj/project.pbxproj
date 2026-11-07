@@ -422,7 +422,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\"\nCHECKOUT_ROOT=\"${BUILD_DIR%Build/*}SourcePackages/checkouts/amneziawg-apple\"\n/usr/bin/make -C \"$CHECKOUT_ROOT/Sources/WireGuardKitGo\"\n";
+			shellScript = "/bin/bash \"$SRCROOT/scripts/build-awg.sh\"\n";
 		};
 		EDD0E5EB152558E154CA3B09 /* Build shared KMP framework */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -460,7 +460,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\"\nCHECKOUT_ROOT=\"${BUILD_DIR%Build/*}SourcePackages/checkouts/amneziawg-apple\"\nGO_BRIDGE=\"$CHECKOUT_ROOT/Sources/WireGuardKitGo\"\nif [ ! -d \"$GO_BRIDGE\" ]; then\n  echo \"error: Swift Package checkout not found at $GO_BRIDGE\"\n  exit 1\nfi\n/usr/bin/make -C \"$GO_BRIDGE\"\n";
+			shellScript = "/bin/bash \"$SRCROOT/scripts/build-awg.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -947,8 +947,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/amnezia-vpn/amneziawg-apple.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = revision;
+				revision = 9d5ee60edefa95b933a738dd7cda671dd18021fc;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
