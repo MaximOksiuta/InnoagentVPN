@@ -1,6 +1,9 @@
 name: Client platform checks
 on:
   workflow_dispatch:
+  push:
+    branches: [codex/client-app-20261108]
+    paths: [client/**, .github/workflows/client-platforms.yml]
 permissions:
   contents: read
 defaults:
