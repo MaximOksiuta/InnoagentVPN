@@ -1,0 +1,240 @@
+name: InoagentVPN
+
+options:
+  bundleIdPrefix: com.inoagent.vpn
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+
+packages:
+  AmneziaWGApple:
+    url: https://github.com/amnezia-vpn/amneziawg-apple.git
+    branch: master
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 0.1.0
+
+targets:
+  InoagentVPN:
+    type: application
+    platform: iOS
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Inoagent VPN
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        KeychainAccessGroup: $(AppIdentifierPrefix)com.inoagent.vpn.shared
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    entitlements:
+      path: App/InoagentVPN.entitlements
+      properties:
+        com.apple.developer.networking.networkextension:
+          - packet-tunnel-provider
+        keychain-access-groups:
+          - $(AppIdentifierPrefix)com.inoagent.vpn.shared
+    sources:
+      - path: App
+      - path: Shared
+    resources:
+      - path: App/Assets.xcassets
+    dependencies:
+      - target: PacketTunnel
+    preBuildScripts:
+      - name: Build shared KMP framework
+        basedOnDependencyAnalysis: false
+        script: |
+          cd "$SRCROOT/.."
+          ./gradlew :shared:embedAndSignAppleFrameworkForXcode
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.inoagent.vpn.ios
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        PRODUCT_NAME: Inoagent VPN
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+        FRAMEWORK_SEARCH_PATHS: "$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
+        OTHER_LDFLAGS: "$(inherited) -framework Shared"
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_BITCODE: NO
+
+  PacketTunnel:
+    type: app-extension
+    platform: iOS
+    info:
+      path: PacketTunnel/Info.plist
+      properties:
+        CFBundleDisplayName: Inoagent VPN Tunnel
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        KeychainAccessGroup: $(AppIdentifierPrefix)com.inoagent.vpn.shared
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.networkextension.packet-tunnel
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).PacketTunnelProvider
+    entitlements:
+      path: PacketTunnel/PacketTunnel.entitlements
+      properties:
+        com.apple.developer.networking.networkextension:
+          - packet-tunnel-provider
+        keychain-access-groups:
+          - $(AppIdentifierPrefix)com.inoagent.vpn.shared
+    sources:
+      - path: PacketTunnel
+      - path: Shared
+    dependencies:
+      - package: AmneziaWGApple
+        product: WireGuardKit
+    preBuildScripts:
+      - name: Build AmneziaWG Go bridge
+        basedOnDependencyAnalysis: false
+        script: |
+          set -euo pipefail
+          export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+          CHECKOUT_ROOT="${BUILD_DIR%Build/*}SourcePackages/checkouts/amneziawg-apple"
+          GO_BRIDGE="$CHECKOUT_ROOT/Sources/WireGuardKitGo"
+          if [ ! -d "$GO_BRIDGE" ]; then
+            echo "error: Swift Package checkout not found at $GO_BRIDGE"
+            exit 1
+          fi
+          /usr/bin/make -C "$GO_BRIDGE"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.inoagent.vpn.ios.tunnel
+        PRODUCT_NAME: PacketTunnel
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+        SKIP_INSTALL: YES
+        APPLICATION_EXTENSION_API_ONLY: YES
+        ENABLE_BITCODE: NO
+
+  InoagentCompanion:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: App
+        excludes: [HomeView.swift, ProfilesView.swift]
+      - path: Shared
+    resources:
+      - path: App/Assets.xcassets
+    info:
+      path: Companion/Info.plist
+      properties:
+        CFBundleDisplayName: Inoagent
+        UILaunchScreen: {}
+    preBuildScripts:
+      - name: Build shared KMP framework
+        basedOnDependencyAnalysis: false
+        script: |
+          cd "$SRCROOT/.."
+          ./gradlew :shared:embedAndSignAppleFrameworkForXcode
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.inoagent.vpn.companion
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) COMPANION"
+        FRAMEWORK_SEARCH_PATHS: "$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
+        OTHER_LDFLAGS: "$(inherited) -framework Shared"
+        CODE_SIGN_STYLE: Automatic
+
+  InoagentVPNMac:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: App
+        excludes: [HomeView.swift, ProfilesView.swift]
+      - path: Shared
+    resources:
+      - path: App/Assets.xcassets
+    info:
+      path: Mac/Info.plist
+      properties:
+        CFBundleDisplayName: Inoagent VPN
+        KeychainAccessGroup: $(AppIdentifierPrefix)com.inoagent.vpn.shared
+    entitlements:
+      path: Mac/InoagentVPN.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.network.client: true
+        com.apple.security.files.user-selected.read-only: true
+        com.apple.developer.networking.networkextension: [packet-tunnel-provider]
+        keychain-access-groups: [$(AppIdentifierPrefix)com.inoagent.vpn.shared]
+    dependencies:
+      - target: PacketTunnelMac
+    preBuildScripts:
+      - name: Build shared KMP framework
+        basedOnDependencyAnalysis: false
+        script: |
+          cd "$SRCROOT/.."
+          ./gradlew :shared:embedAndSignAppleFrameworkForXcode
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.inoagent.vpn.macos
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        FRAMEWORK_SEARCH_PATHS: "$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
+        OTHER_LDFLAGS: "$(inherited) -framework Shared"
+        CODE_SIGN_STYLE: Automatic
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+
+  PacketTunnelMac:
+    type: app-extension
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: PacketTunnel
+      - path: Shared
+    info:
+      path: MacTunnel/Info.plist
+      properties:
+        KeychainAccessGroup: $(AppIdentifierPrefix)com.inoagent.vpn.shared
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.networkextension.packet-tunnel
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).PacketTunnelProvider
+    entitlements:
+      path: MacTunnel/PacketTunnel.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.network.client: true
+        com.apple.security.network.server: true
+        com.apple.developer.networking.networkextension: [packet-tunnel-provider]
+        keychain-access-groups: [$(AppIdentifierPrefix)com.inoagent.vpn.shared]
+    dependencies:
+      - package: AmneziaWGApple
+        product: WireGuardKit
+    preBuildScripts:
+      - name: Build AmneziaWG Go bridge
+        basedOnDependencyAnalysis: false
+        script: |
+          set -euo pipefail
+          export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+          CHECKOUT_ROOT="${BUILD_DIR%Build/*}SourcePackages/checkouts/amneziawg-apple"
+          /usr/bin/make -C "$CHECKOUT_ROOT/Sources/WireGuardKitGo"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.inoagent.vpn.macos.tunnel
+        CODE_SIGN_STYLE: Automatic
+        SKIP_INSTALL: YES
+        APPLICATION_EXTENSION_API_ONLY: YES
+
+schemes:
+  InoagentVPN:
+    build:
+      targets:
+        InoagentVPN: all
+  InoagentCompanion:
+    build:
+      targets:
+        InoagentCompanion: all
+  InoagentVPNMac:
+    build:
+      targets:
+        InoagentVPNMac: all

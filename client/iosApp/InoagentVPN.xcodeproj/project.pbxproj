@@ -1,0 +1,1000 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0AA95B12CF08CE97BBDC6EDE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FD18615D989A844B7BD1BB9 /* Info.plist */; };
+		0E0E366107A0897AC4B7CE7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B5E1EDB586681885B0E76D /* Assets.xcassets */; };
+		152DD896C6E90B227AD544F9 /* InoagentVPNApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94259B6BB8376CBB858A7D36 /* InoagentVPNApp.swift */; };
+		190762CF6FB4AFB3A00D7152 /* KeychainConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E50679E80EBE6EA601B5E /* KeychainConfigStore.swift */; };
+		2261F0C79C520DDFFB3E8E9F /* KeychainConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E50679E80EBE6EA601B5E /* KeychainConfigStore.swift */; };
+		2D894F7C9612BF01EA95F2E9 /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5B02E71BC2FCD4D202BFF4 /* VPNManager.swift */; };
+		3BDDF4D852B2A2F7E735A965 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB9EFAA7685CC19057A514 /* HomeView.swift */; };
+		3FBC23C4E43AB540CAD65265 /* AppleClientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1395695D81B9B58CFC4D817C /* AppleClientView.swift */; };
+		48F8932FB8AD1FF0580E8988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B5E1EDB586681885B0E76D /* Assets.xcassets */; };
+		5E5F54AA2EA7AA52371DAA97 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CABF7F9E50DA9E85A055B97 /* RootView.swift */; };
+		65765BE4C37B7005E7B313EB /* AWGConfigParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E96AB4CAE4527F0E990563 /* AWGConfigParser.swift */; };
+		697B8410FFDD74A1616730A0 /* AppleAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F2A6E931C4993A4EF8385F /* AppleAccountModel.swift */; };
+		69A672FA4B31BD0027B64DC0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC4D54CB298E3B231894F32F /* Info.plist */; };
+		6A0A3350CD135460551135D7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC4D54CB298E3B231894F32F /* Info.plist */; };
+		6B3EEBE281BE1A8F125BE6F5 /* KeychainConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E50679E80EBE6EA601B5E /* KeychainConfigStore.swift */; };
+		723FBAA9D02BFB9BC187736A /* VPNProfileRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA35504E23C50312DB99CEF /* VPNProfileRecord.swift */; };
+		74329067A68877CE2BB9900E /* PacketTunnel.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4640BDCCD89178FD8D7EFFCD /* PacketTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7498C417BF591E32401A58FD /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571ABC1DBEC300017EC8737F /* PacketTunnelProvider.swift */; };
+		7CDB1D91F3A2D277F60E409E /* AppleClientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1395695D81B9B58CFC4D817C /* AppleClientView.swift */; };
+		80997D9CDA61D5836CD2C287 /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5B02E71BC2FCD4D202BFF4 /* VPNManager.swift */; };
+		814806C1FB8DE780BE6C36A5 /* AppleAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F2A6E931C4993A4EF8385F /* AppleAccountModel.swift */; };
+		874312B7376BFCAB6D976060 /* VPNProfileRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA35504E23C50312DB99CEF /* VPNProfileRecord.swift */; };
+		901ECABE060A13E0CCE4DB72 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CABF7F9E50DA9E85A055B97 /* RootView.swift */; };
+		91CAC65684A8A33989DE0B24 /* PacketTunnelMac.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0CBDF66DF202D12829243C8F /* PacketTunnelMac.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		99E35D9817BEB481D03988F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B5E1EDB586681885B0E76D /* Assets.xcassets */; };
+		9AE77D2754C089DE858AAF98 /* AWGConfigParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E96AB4CAE4527F0E990563 /* AWGConfigParser.swift */; };
+		9CE03FB89CD11DD35EFF9568 /* WireGuardKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7163F9B1DFCB9BC4616BA501 /* WireGuardKit */; };
+		A4E70AA9E23DA9733CF1B9DA /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B17776DCDD3810A27C5FD /* ProfileStore.swift */; };
+		A53D515D853674773506ED4C /* KeychainConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E50679E80EBE6EA601B5E /* KeychainConfigStore.swift */; };
+		B45842290E580AB232624212 /* AppleAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F2A6E931C4993A4EF8385F /* AppleAccountModel.swift */; };
+		BF79E6E470AA06B8DCF19A79 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CABF7F9E50DA9E85A055B97 /* RootView.swift */; };
+		C2D9AE6E99095B9729BB287E /* WireGuardKit in Frameworks */ = {isa = PBXBuildFile; productRef = B6E7CB396DCAF69EFA2EA004 /* WireGuardKit */; };
+		CE2C5027A60D3BF1DFFABD7B /* ProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9E9AF51AD3EC2ADAEDC4EF /* ProfilesView.swift */; };
+		D139AADD2FCADCE613E1146E /* InoagentVPNApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94259B6BB8376CBB858A7D36 /* InoagentVPNApp.swift */; };
+		D2C3F15A3EFE79F2322051BE /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B17776DCDD3810A27C5FD /* ProfileStore.swift */; };
+		D66B5A63699E32F5D802DB76 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571ABC1DBEC300017EC8737F /* PacketTunnelProvider.swift */; };
+		E902A6728933501F4D3912F4 /* InoagentVPNApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94259B6BB8376CBB858A7D36 /* InoagentVPNApp.swift */; };
+		E9477AB102769C4304EDE177 /* KeychainConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E50679E80EBE6EA601B5E /* KeychainConfigStore.swift */; };
+		EB1BAEE60214EBE311C54C5D /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5B02E71BC2FCD4D202BFF4 /* VPNManager.swift */; };
+		EB557CC1EE8DEB90CA0C2C86 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B17776DCDD3810A27C5FD /* ProfileStore.swift */; };
+		F484ECEEB9E9BDB02C14EC22 /* VPNProfileRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA35504E23C50312DB99CEF /* VPNProfileRecord.swift */; };
+		F963D87A57744CC03477ED65 /* AppleClientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1395695D81B9B58CFC4D817C /* AppleClientView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4410BE410CA5CA900F14D3F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6ACD2E4220B70C3B3190D8D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E295F435072F2D1921315557;
+			remoteInfo = PacketTunnelMac;
+		};
+		F9FE82B636BE7C9C56CF31D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6ACD2E4220B70C3B3190D8D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70CA2DD975233C4143938D27;
+			remoteInfo = PacketTunnel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B29993B23BA16AFC3D0E2561 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				91CAC65684A8A33989DE0B24 /* PacketTunnelMac.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6604A50FB41A0045452A19B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				74329067A68877CE2BB9900E /* PacketTunnel.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		07F2A6E931C4993A4EF8385F /* AppleAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAccountModel.swift; sourceTree = "<group>"; };
+		0CBDF66DF202D12829243C8F /* PacketTunnelMac.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PacketTunnelMac.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1395695D81B9B58CFC4D817C /* AppleClientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleClientView.swift; sourceTree = "<group>"; };
+		19E96AB4CAE4527F0E990563 /* AWGConfigParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWGConfigParser.swift; sourceTree = "<group>"; };
+		1B5B02E71BC2FCD4D202BFF4 /* VPNManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
+		213B17776DCDD3810A27C5FD /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
+		28ADA1BA0415F1AB81AE9D33 /* PacketTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel.entitlements; sourceTree = "<group>"; };
+		2FD18615D989A844B7BD1BB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		373E375225B1ADC9AE58C4FE /* InoagentVPN.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = InoagentVPN.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		382E50679E80EBE6EA601B5E /* KeychainConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConfigStore.swift; sourceTree = "<group>"; };
+		4640BDCCD89178FD8D7EFFCD /* PacketTunnel.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = PacketTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		571ABC1DBEC300017EC8737F /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
+		6CABF7F9E50DA9E85A055B97 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		6E4C067D17BAD77CE58FB7E6 /* InoagentCompanion.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = InoagentCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8392361061B9CF5CA6213308 /* InoagentVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InoagentVPN.entitlements; sourceTree = "<group>"; };
+		9334A645CA7B405BFE707EF2 /* InoagentVPNMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InoagentVPNMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94259B6BB8376CBB858A7D36 /* InoagentVPNApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InoagentVPNApp.swift; sourceTree = "<group>"; };
+		B5B5E1EDB586681885B0E76D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BC4D54CB298E3B231894F32F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D8EB9EFAA7685CC19057A514 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		DAA35504E23C50312DB99CEF /* VPNProfileRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNProfileRecord.swift; sourceTree = "<group>"; };
+		FF9E9AF51AD3EC2ADAEDC4EF /* ProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC75C1B87FD691AC1EB3E347 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CE03FB89CD11DD35EFF9568 /* WireGuardKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0B509D31E0680543F0DD307 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2D9AE6E99095B9729BB287E /* WireGuardKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C308E3B12DACA6E25040830 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				382E50679E80EBE6EA601B5E /* KeychainConfigStore.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		9BC27211121871463C24854F /* PacketTunnel */ = {
+			isa = PBXGroup;
+			children = (
+				19E96AB4CAE4527F0E990563 /* AWGConfigParser.swift */,
+				2FD18615D989A844B7BD1BB9 /* Info.plist */,
+				28ADA1BA0415F1AB81AE9D33 /* PacketTunnel.entitlements */,
+				571ABC1DBEC300017EC8737F /* PacketTunnelProvider.swift */,
+			);
+			path = PacketTunnel;
+			sourceTree = "<group>";
+		};
+		A3FCFA119852BDD58A9685DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E4C067D17BAD77CE58FB7E6 /* InoagentCompanion.app */,
+				373E375225B1ADC9AE58C4FE /* InoagentVPN.app */,
+				9334A645CA7B405BFE707EF2 /* InoagentVPNMac.app */,
+				4640BDCCD89178FD8D7EFFCD /* PacketTunnel.appex */,
+				0CBDF66DF202D12829243C8F /* PacketTunnelMac.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DDF4BE365E850C9AD47D957E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				07F2A6E931C4993A4EF8385F /* AppleAccountModel.swift */,
+				1395695D81B9B58CFC4D817C /* AppleClientView.swift */,
+				B5B5E1EDB586681885B0E76D /* Assets.xcassets */,
+				D8EB9EFAA7685CC19057A514 /* HomeView.swift */,
+				BC4D54CB298E3B231894F32F /* Info.plist */,
+				8392361061B9CF5CA6213308 /* InoagentVPN.entitlements */,
+				94259B6BB8376CBB858A7D36 /* InoagentVPNApp.swift */,
+				213B17776DCDD3810A27C5FD /* ProfileStore.swift */,
+				FF9E9AF51AD3EC2ADAEDC4EF /* ProfilesView.swift */,
+				6CABF7F9E50DA9E85A055B97 /* RootView.swift */,
+				1B5B02E71BC2FCD4D202BFF4 /* VPNManager.swift */,
+				DAA35504E23C50312DB99CEF /* VPNProfileRecord.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F9B55ABF109E2C26AEB7782F = {
+			isa = PBXGroup;
+			children = (
+				DDF4BE365E850C9AD47D957E /* App */,
+				9BC27211121871463C24854F /* PacketTunnel */,
+				8C308E3B12DACA6E25040830 /* Shared */,
+				A3FCFA119852BDD58A9685DA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		159E6A0BD8838620C02457C5 /* InoagentVPN */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F68C72B331E5CCDF7A9FA219 /* Build configuration list for PBXNativeTarget "InoagentVPN" */;
+			buildPhases = (
+				97169880678A5A0CF30D5429 /* Build shared KMP framework */,
+				3590E44795662679CACF3B46 /* Sources */,
+				A488BF51D9EDEB8337A3D5A3 /* Resources */,
+				C6604A50FB41A0045452A19B /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				85AE234A4F6D1FC8FA570DB8 /* PBXTargetDependency */,
+			);
+			name = InoagentVPN;
+			packageProductDependencies = (
+			);
+			productName = InoagentVPN;
+			productReference = 373E375225B1ADC9AE58C4FE /* InoagentVPN.app */;
+			productType = "com.apple.product-type.application";
+		};
+		412AC46D174F9DA7B011FECB /* InoagentVPNMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66C1BD0B8047C925F76DF699 /* Build configuration list for PBXNativeTarget "InoagentVPNMac" */;
+			buildPhases = (
+				EDD0E5EB152558E154CA3B09 /* Build shared KMP framework */,
+				85839E07254F8F96EBB95FFD /* Sources */,
+				3FBC8E8E5D5AFC12F3FD3AF6 /* Resources */,
+				B29993B23BA16AFC3D0E2561 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				652B5419E390606E79F2BB61 /* PBXTargetDependency */,
+			);
+			name = InoagentVPNMac;
+			packageProductDependencies = (
+			);
+			productName = InoagentVPNMac;
+			productReference = 9334A645CA7B405BFE707EF2 /* InoagentVPNMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		70CA2DD975233C4143938D27 /* PacketTunnel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C0CAB35E5DBD95E48C2E359 /* Build configuration list for PBXNativeTarget "PacketTunnel" */;
+			buildPhases = (
+				EDED9C127DC6D68B5D321E89 /* Build AmneziaWG Go bridge */,
+				971FEF36D0851BE7523975C3 /* Sources */,
+				CC75C1B87FD691AC1EB3E347 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PacketTunnel;
+			packageProductDependencies = (
+				7163F9B1DFCB9BC4616BA501 /* WireGuardKit */,
+			);
+			productName = PacketTunnel;
+			productReference = 4640BDCCD89178FD8D7EFFCD /* PacketTunnel.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		773B2DB61FE9A8E401057A80 /* InoagentCompanion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 631ACFB2B73509DFC45EC2DF /* Build configuration list for PBXNativeTarget "InoagentCompanion" */;
+			buildPhases = (
+				7DA9F6A73FBA60A8C7A09507 /* Build shared KMP framework */,
+				3CEB1754D565E494D857B968 /* Sources */,
+				F8DD9AD6043F34C78EB514FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InoagentCompanion;
+			packageProductDependencies = (
+			);
+			productName = InoagentCompanion;
+			productReference = 6E4C067D17BAD77CE58FB7E6 /* InoagentCompanion.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E295F435072F2D1921315557 /* PacketTunnelMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF7E562E95864869353E4D09 /* Build configuration list for PBXNativeTarget "PacketTunnelMac" */;
+			buildPhases = (
+				D3D076B49B3F55252C645579 /* Build AmneziaWG Go bridge */,
+				6F660F819D121F304DAE9B73 /* Sources */,
+				DB17F040491B62470573AB87 /* Resources */,
+				F0B509D31E0680543F0DD307 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PacketTunnelMac;
+			packageProductDependencies = (
+				B6E7CB396DCAF69EFA2EA004 /* WireGuardKit */,
+			);
+			productName = PacketTunnelMac;
+			productReference = 0CBDF66DF202D12829243C8F /* PacketTunnelMac.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6ACD2E4220B70C3B3190D8D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					159E6A0BD8838620C02457C5 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					412AC46D174F9DA7B011FECB = {
+						ProvisioningStyle = Automatic;
+					};
+					70CA2DD975233C4143938D27 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					773B2DB61FE9A8E401057A80 = {
+						ProvisioningStyle = Automatic;
+					};
+					E295F435072F2D1921315557 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F061745B0BF8B71E68C31B65 /* Build configuration list for PBXProject "InoagentVPN" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = F9B55ABF109E2C26AEB7782F;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D1D5989B534BF284332C9596 /* XCRemoteSwiftPackageReference "amneziawg-apple" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A3FCFA119852BDD58A9685DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				159E6A0BD8838620C02457C5 /* InoagentVPN */,
+				70CA2DD975233C4143938D27 /* PacketTunnel */,
+				773B2DB61FE9A8E401057A80 /* InoagentCompanion */,
+				412AC46D174F9DA7B011FECB /* InoagentVPNMac */,
+				E295F435072F2D1921315557 /* PacketTunnelMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3FBC8E8E5D5AFC12F3FD3AF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99E35D9817BEB481D03988F3 /* Assets.xcassets in Resources */,
+				69A672FA4B31BD0027B64DC0 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A488BF51D9EDEB8337A3D5A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E0E366107A0897AC4B7CE7B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB17F040491B62470573AB87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0AA95B12CF08CE97BBDC6EDE /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8DD9AD6043F34C78EB514FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48F8932FB8AD1FF0580E8988 /* Assets.xcassets in Resources */,
+				6A0A3350CD135460551135D7 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7DA9F6A73FBA60A8C7A09507 /* Build shared KMP framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build shared KMP framework";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+		};
+		97169880678A5A0CF30D5429 /* Build shared KMP framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build shared KMP framework";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+		};
+		D3D076B49B3F55252C645579 /* Build AmneziaWG Go bridge */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build AmneziaWG Go bridge";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\"\nCHECKOUT_ROOT=\"${BUILD_DIR%Build/*}SourcePackages/checkouts/amneziawg-apple\"\n/usr/bin/make -C \"$CHECKOUT_ROOT/Sources/WireGuardKitGo\"\n";
+		};
+		EDD0E5EB152558E154CA3B09 /* Build shared KMP framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build shared KMP framework";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+		};
+		EDED9C127DC6D68B5D321E89 /* Build AmneziaWG Go bridge */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build AmneziaWG Go bridge";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\"\nCHECKOUT_ROOT=\"${BUILD_DIR%Build/*}SourcePackages/checkouts/amneziawg-apple\"\nGO_BRIDGE=\"$CHECKOUT_ROOT/Sources/WireGuardKitGo\"\nif [ ! -d \"$GO_BRIDGE\" ]; then\n  echo \"error: Swift Package checkout not found at $GO_BRIDGE\"\n  exit 1\nfi\n/usr/bin/make -C \"$GO_BRIDGE\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3590E44795662679CACF3B46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B45842290E580AB232624212 /* AppleAccountModel.swift in Sources */,
+				7CDB1D91F3A2D277F60E409E /* AppleClientView.swift in Sources */,
+				3BDDF4D852B2A2F7E735A965 /* HomeView.swift in Sources */,
+				152DD896C6E90B227AD544F9 /* InoagentVPNApp.swift in Sources */,
+				6B3EEBE281BE1A8F125BE6F5 /* KeychainConfigStore.swift in Sources */,
+				EB557CC1EE8DEB90CA0C2C86 /* ProfileStore.swift in Sources */,
+				CE2C5027A60D3BF1DFFABD7B /* ProfilesView.swift in Sources */,
+				901ECABE060A13E0CCE4DB72 /* RootView.swift in Sources */,
+				80997D9CDA61D5836CD2C287 /* VPNManager.swift in Sources */,
+				F484ECEEB9E9BDB02C14EC22 /* VPNProfileRecord.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CEB1754D565E494D857B968 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				814806C1FB8DE780BE6C36A5 /* AppleAccountModel.swift in Sources */,
+				3FBC23C4E43AB540CAD65265 /* AppleClientView.swift in Sources */,
+				D139AADD2FCADCE613E1146E /* InoagentVPNApp.swift in Sources */,
+				190762CF6FB4AFB3A00D7152 /* KeychainConfigStore.swift in Sources */,
+				D2C3F15A3EFE79F2322051BE /* ProfileStore.swift in Sources */,
+				BF79E6E470AA06B8DCF19A79 /* RootView.swift in Sources */,
+				EB1BAEE60214EBE311C54C5D /* VPNManager.swift in Sources */,
+				723FBAA9D02BFB9BC187736A /* VPNProfileRecord.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F660F819D121F304DAE9B73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65765BE4C37B7005E7B313EB /* AWGConfigParser.swift in Sources */,
+				A53D515D853674773506ED4C /* KeychainConfigStore.swift in Sources */,
+				D66B5A63699E32F5D802DB76 /* PacketTunnelProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85839E07254F8F96EBB95FFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				697B8410FFDD74A1616730A0 /* AppleAccountModel.swift in Sources */,
+				F963D87A57744CC03477ED65 /* AppleClientView.swift in Sources */,
+				E902A6728933501F4D3912F4 /* InoagentVPNApp.swift in Sources */,
+				E9477AB102769C4304EDE177 /* KeychainConfigStore.swift in Sources */,
+				A4E70AA9E23DA9733CF1B9DA /* ProfileStore.swift in Sources */,
+				5E5F54AA2EA7AA52371DAA97 /* RootView.swift in Sources */,
+				2D894F7C9612BF01EA95F2E9 /* VPNManager.swift in Sources */,
+				874312B7376BFCAB6D976060 /* VPNProfileRecord.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		971FEF36D0851BE7523975C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE77D2754C089DE858AAF98 /* AWGConfigParser.swift in Sources */,
+				2261F0C79C520DDFFB3E8E9F /* KeychainConfigStore.swift in Sources */,
+				7498C417BF591E32401A58FD /* PacketTunnelProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		652B5419E390606E79F2BB61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E295F435072F2D1921315557 /* PacketTunnelMac */;
+			targetProxy = 4410BE410CA5CA900F14D3F4 /* PBXContainerItemProxy */;
+		};
+		85AE234A4F6D1FC8FA570DB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70CA2DD975233C4143938D27 /* PacketTunnel */;
+			targetProxy = F9FE82B636BE7C9C56CF31D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0B84D1DCD415E2BDA5D9AE1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mac/InoagentVPN.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				INFOPLIST_FILE = Mac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				OTHER_LDFLAGS = "$(inherited) -framework Shared";
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoagent.vpn.macos;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		22FE2A69A8EAE2633BC1B27E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		36F04700E643F0832ED18307 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				INFOPLIST_FILE = Companion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "$(inherited) -framework Shared";
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoagent.vpn.companion;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) COMPANION";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A52503BD6ACDA1CAE489C33B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = PacketTunnel/PacketTunnel.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = PacketTunnel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoagent.vpn.ios.tunnel;
+				PRODUCT_NAME = PacketTunnel;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B3CE032FDFA942D64DD67F3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = App/InoagentVPN.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "$(inherited) -framework Shared";
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoagent.vpn.ios;
+				PRODUCT_NAME = "Inoagent VPN";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C1262FE8FB22C08C6243FCB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = App/InoagentVPN.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "$(inherited) -framework Shared";
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoagent.vpn.ios;
+				PRODUCT_NAME = "Inoagent VPN";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C2F2A2EE006EAF38044E80C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = MacTunnel/PacketTunnel.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MacTunnel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoagent.vpn.macos.tunnel;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		CB0A2731718C1906EAE6F4EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mac/InoagentVPN.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				INFOPLIST_FILE = Mac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				OTHER_LDFLAGS = "$(inherited) -framework Shared";
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoagent.vpn.macos;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D5458C9BC0CD7120EC7A2B7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = PacketTunnel/PacketTunnel.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = PacketTunnel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoagent.vpn.ios.tunnel;
+				PRODUCT_NAME = PacketTunnel;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DE797E7C703935A7E703D3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F5D34AFE0A1D603DC657B7BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = MacTunnel/PacketTunnel.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MacTunnel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoagent.vpn.macos.tunnel;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F81726D7398A857DD9DBA95B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				INFOPLIST_FILE = Companion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "$(inherited) -framework Shared";
+				PRODUCT_BUNDLE_IDENTIFIER = com.inoagent.vpn.companion;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) COMPANION";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C0CAB35E5DBD95E48C2E359 /* Build configuration list for PBXNativeTarget "PacketTunnel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A52503BD6ACDA1CAE489C33B /* Debug */,
+				D5458C9BC0CD7120EC7A2B7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		631ACFB2B73509DFC45EC2DF /* Build configuration list for PBXNativeTarget "InoagentCompanion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36F04700E643F0832ED18307 /* Debug */,
+				F81726D7398A857DD9DBA95B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		66C1BD0B8047C925F76DF699 /* Build configuration list for PBXNativeTarget "InoagentVPNMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B84D1DCD415E2BDA5D9AE1F /* Debug */,
+				CB0A2731718C1906EAE6F4EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AF7E562E95864869353E4D09 /* Build configuration list for PBXNativeTarget "PacketTunnelMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5D34AFE0A1D603DC657B7BF /* Debug */,
+				C2F2A2EE006EAF38044E80C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F061745B0BF8B71E68C31B65 /* Build configuration list for PBXProject "InoagentVPN" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE797E7C703935A7E703D3BF /* Debug */,
+				22FE2A69A8EAE2633BC1B27E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F68C72B331E5CCDF7A9FA219 /* Build configuration list for PBXNativeTarget "InoagentVPN" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1262FE8FB22C08C6243FCB8 /* Debug */,
+				B3CE032FDFA942D64DD67F3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D1D5989B534BF284332C9596 /* XCRemoteSwiftPackageReference "amneziawg-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amnezia-vpn/amneziawg-apple.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7163F9B1DFCB9BC4616BA501 /* WireGuardKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1D5989B534BF284332C9596 /* XCRemoteSwiftPackageReference "amneziawg-apple" */;
+			productName = WireGuardKit;
+		};
+		B6E7CB396DCAF69EFA2EA004 /* WireGuardKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1D5989B534BF284332C9596 /* XCRemoteSwiftPackageReference "amneziawg-apple" */;
+			productName = WireGuardKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 6ACD2E4220B70C3B3190D8D7 /* Project object */;
+}

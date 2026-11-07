@@ -1,0 +1,69 @@
+name: Client platform checks
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+defaults:
+  run:
+    working-directory: client
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: chmod +x gradlew
+      - run: ./gradlew --no-daemon :shared:desktopTest :desktopApp:test :androidApp:assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Inoagent-Android-test
+          path: client/androidApp/build/outputs/apk/debug/*.apk
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: choco install wixtoolset --version=3.14.1 --yes --no-progress
+      - run: .\gradlew.bat --no-daemon :shared:desktopTest :desktopApp:test :desktopApp:packageMsi :desktopApp:packageExe
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Inoagent-Windows-test
+          path: |
+            client/desktopApp/build/compose/binaries/main/msi/*
+            client/desktopApp/build/compose/binaries/main/exe/*
+            client/desktopApp/windows/Install-Runtime.ps1
+  apple:
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.24.x'
+      - run: |
+          if [ -d /Applications/Xcode_16.4.app ]; then sudo xcode-select -s /Applications/Xcode_16.4.app; fi
+          xcodebuild -version
+          command -v xcodegen || brew install xcodegen
+          chmod +x gradlew
+          xcodegen generate --spec iosApp/project.yml
+      - name: Build free Companion
+        run: xcodebuild -project iosApp/InoagentVPN.xcodeproj -scheme InoagentCompanion -sdk iphonesimulator -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath build/apple CODE_SIGNING_ALLOWED=NO build > build-companion.log 2>&1 || { tail -100 build-companion.log; exit 1; }
+      - name: Build native iOS tunnel
+        run: xcodebuild -project iosApp/InoagentVPN.xcodeproj -scheme InoagentVPN -sdk iphonesimulator -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath build/apple CODE_SIGNING_ALLOWED=NO build > build-ios.log 2>&1 || { tail -100 build-ios.log; exit 1; }
+      - name: Build native macOS tunnel
+        run: xcodebuild -project iosApp/InoagentVPN.xcodeproj -scheme InoagentVPNMac -sdk macosx -configuration Debug -derivedDataPath build/mac CODE_SIGNING_ALLOWED=NO build > build-mac.log 2>&1 || { tail -100 build-mac.log; exit 1; }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Apple-build-logs
+          path: client/build-*.log
