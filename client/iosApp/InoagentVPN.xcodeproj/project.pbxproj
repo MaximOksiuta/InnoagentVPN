@@ -7,20 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0AA95B12CF08CE97BBDC6EDE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FD18615D989A844B7BD1BB9 /* Info.plist */; };
 		0E0E366107A0897AC4B7CE7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B5E1EDB586681885B0E76D /* Assets.xcassets */; };
 		152DD896C6E90B227AD544F9 /* InoagentVPNApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94259B6BB8376CBB858A7D36 /* InoagentVPNApp.swift */; };
 		190762CF6FB4AFB3A00D7152 /* KeychainConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E50679E80EBE6EA601B5E /* KeychainConfigStore.swift */; };
 		2261F0C79C520DDFFB3E8E9F /* KeychainConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E50679E80EBE6EA601B5E /* KeychainConfigStore.swift */; };
 		2D894F7C9612BF01EA95F2E9 /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5B02E71BC2FCD4D202BFF4 /* VPNManager.swift */; };
-		3BDDF4D852B2A2F7E735A965 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB9EFAA7685CC19057A514 /* HomeView.swift */; };
 		3FBC23C4E43AB540CAD65265 /* AppleClientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1395695D81B9B58CFC4D817C /* AppleClientView.swift */; };
 		48F8932FB8AD1FF0580E8988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B5E1EDB586681885B0E76D /* Assets.xcassets */; };
 		5E5F54AA2EA7AA52371DAA97 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CABF7F9E50DA9E85A055B97 /* RootView.swift */; };
 		65765BE4C37B7005E7B313EB /* AWGConfigParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E96AB4CAE4527F0E990563 /* AWGConfigParser.swift */; };
 		697B8410FFDD74A1616730A0 /* AppleAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F2A6E931C4993A4EF8385F /* AppleAccountModel.swift */; };
-		69A672FA4B31BD0027B64DC0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC4D54CB298E3B231894F32F /* Info.plist */; };
-		6A0A3350CD135460551135D7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC4D54CB298E3B231894F32F /* Info.plist */; };
 		6B3EEBE281BE1A8F125BE6F5 /* KeychainConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E50679E80EBE6EA601B5E /* KeychainConfigStore.swift */; };
 		723FBAA9D02BFB9BC187736A /* VPNProfileRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA35504E23C50312DB99CEF /* VPNProfileRecord.swift */; };
 		74329067A68877CE2BB9900E /* PacketTunnel.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4640BDCCD89178FD8D7EFFCD /* PacketTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -39,7 +35,6 @@
 		B45842290E580AB232624212 /* AppleAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F2A6E931C4993A4EF8385F /* AppleAccountModel.swift */; };
 		BF79E6E470AA06B8DCF19A79 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CABF7F9E50DA9E85A055B97 /* RootView.swift */; };
 		C2D9AE6E99095B9729BB287E /* WireGuardKit in Frameworks */ = {isa = PBXBuildFile; productRef = B6E7CB396DCAF69EFA2EA004 /* WireGuardKit */; };
-		CE2C5027A60D3BF1DFFABD7B /* ProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9E9AF51AD3EC2ADAEDC4EF /* ProfilesView.swift */; };
 		D139AADD2FCADCE613E1146E /* InoagentVPNApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94259B6BB8376CBB858A7D36 /* InoagentVPNApp.swift */; };
 		D2C3F15A3EFE79F2322051BE /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213B17776DCDD3810A27C5FD /* ProfileStore.swift */; };
 		D66B5A63699E32F5D802DB76 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571ABC1DBEC300017EC8737F /* PacketTunnelProvider.swift */; };
@@ -100,22 +95,16 @@
 		19E96AB4CAE4527F0E990563 /* AWGConfigParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWGConfigParser.swift; sourceTree = "<group>"; };
 		1B5B02E71BC2FCD4D202BFF4 /* VPNManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
 		213B17776DCDD3810A27C5FD /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
-		28ADA1BA0415F1AB81AE9D33 /* PacketTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel.entitlements; sourceTree = "<group>"; };
-		2FD18615D989A844B7BD1BB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		373E375225B1ADC9AE58C4FE /* InoagentVPN.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = InoagentVPN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		382E50679E80EBE6EA601B5E /* KeychainConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConfigStore.swift; sourceTree = "<group>"; };
 		4640BDCCD89178FD8D7EFFCD /* PacketTunnel.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = PacketTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		571ABC1DBEC300017EC8737F /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		6CABF7F9E50DA9E85A055B97 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		6E4C067D17BAD77CE58FB7E6 /* InoagentCompanion.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = InoagentCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8392361061B9CF5CA6213308 /* InoagentVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InoagentVPN.entitlements; sourceTree = "<group>"; };
 		9334A645CA7B405BFE707EF2 /* InoagentVPNMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InoagentVPNMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94259B6BB8376CBB858A7D36 /* InoagentVPNApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InoagentVPNApp.swift; sourceTree = "<group>"; };
 		B5B5E1EDB586681885B0E76D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BC4D54CB298E3B231894F32F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		D8EB9EFAA7685CC19057A514 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DAA35504E23C50312DB99CEF /* VPNProfileRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNProfileRecord.swift; sourceTree = "<group>"; };
-		FF9E9AF51AD3EC2ADAEDC4EF /* ProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				19E96AB4CAE4527F0E990563 /* AWGConfigParser.swift */,
-				2FD18615D989A844B7BD1BB9 /* Info.plist */,
-				28ADA1BA0415F1AB81AE9D33 /* PacketTunnel.entitlements */,
 				571ABC1DBEC300017EC8737F /* PacketTunnelProvider.swift */,
 			);
 			path = PacketTunnel;
@@ -175,12 +162,8 @@
 				07F2A6E931C4993A4EF8385F /* AppleAccountModel.swift */,
 				1395695D81B9B58CFC4D817C /* AppleClientView.swift */,
 				B5B5E1EDB586681885B0E76D /* Assets.xcassets */,
-				D8EB9EFAA7685CC19057A514 /* HomeView.swift */,
-				BC4D54CB298E3B231894F32F /* Info.plist */,
-				8392361061B9CF5CA6213308 /* InoagentVPN.entitlements */,
 				94259B6BB8376CBB858A7D36 /* InoagentVPNApp.swift */,
 				213B17776DCDD3810A27C5FD /* ProfileStore.swift */,
-				FF9E9AF51AD3EC2ADAEDC4EF /* ProfilesView.swift */,
 				6CABF7F9E50DA9E85A055B97 /* RootView.swift */,
 				1B5B02E71BC2FCD4D202BFF4 /* VPNManager.swift */,
 				DAA35504E23C50312DB99CEF /* VPNProfileRecord.swift */,
@@ -288,7 +271,6 @@
 			buildPhases = (
 				D3D076B49B3F55252C645579 /* Build AmneziaWG Go bridge */,
 				6F660F819D121F304DAE9B73 /* Sources */,
-				DB17F040491B62470573AB87 /* Resources */,
 				F0B509D31E0680543F0DD307 /* Frameworks */,
 			);
 			buildRules = (
@@ -363,7 +345,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				99E35D9817BEB481D03988F3 /* Assets.xcassets in Resources */,
-				69A672FA4B31BD0027B64DC0 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,20 +356,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DB17F040491B62470573AB87 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0AA95B12CF08CE97BBDC6EDE /* Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F8DD9AD6043F34C78EB514FC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				48F8932FB8AD1FF0580E8988 /* Assets.xcassets in Resources */,
-				6A0A3350CD135460551135D7 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,11 +471,9 @@
 			files = (
 				B45842290E580AB232624212 /* AppleAccountModel.swift in Sources */,
 				7CDB1D91F3A2D277F60E409E /* AppleClientView.swift in Sources */,
-				3BDDF4D852B2A2F7E735A965 /* HomeView.swift in Sources */,
 				152DD896C6E90B227AD544F9 /* InoagentVPNApp.swift in Sources */,
 				6B3EEBE281BE1A8F125BE6F5 /* KeychainConfigStore.swift in Sources */,
 				EB557CC1EE8DEB90CA0C2C86 /* ProfileStore.swift in Sources */,
-				CE2C5027A60D3BF1DFFABD7B /* ProfilesView.swift in Sources */,
 				901ECABE060A13E0CCE4DB72 /* RootView.swift in Sources */,
 				80997D9CDA61D5836CD2C287 /* VPNManager.swift in Sources */,
 				F484ECEEB9E9BDB02C14EC22 /* VPNProfileRecord.swift in Sources */,

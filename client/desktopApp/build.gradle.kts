@@ -17,6 +17,7 @@ compose.desktop {
     application {
         mainClass="com.inoagent.vpn.desktop.MainKt"
         nativeDistributions {
+            if(project.hasProperty("previewOutput")) outputBaseDir.set(project.file(project.property("previewOutput").toString()))
             targetFormats(TargetFormat.Msi,TargetFormat.Exe)
             packageName="InoagentVPN"
             packageVersion="0.2.0"

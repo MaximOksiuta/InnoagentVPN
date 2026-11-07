@@ -32,7 +32,9 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - run: choco install wixtoolset --version=3.14.1 --yes --no-progress
+      - run: |
+          $wix = Get-ChildItem "${env:ProgramFiles(x86)}\WiX Toolset*\bin\candle.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $wix) { choco install wixtoolset --yes --no-progress }
       - run: .\gradlew.bat --no-daemon :shared:desktopTest :desktopApp:test :desktopApp:packageMsi :desktopApp:packageExe
       - uses: actions/upload-artifact@v4
         with:

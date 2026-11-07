@@ -43,6 +43,7 @@ targets:
           - $(AppIdentifierPrefix)com.inoagent.vpn.shared
     sources:
       - path: App
+        excludes: ["*.plist", "*.entitlements", HomeView.swift, ProfilesView.swift]
       - path: Shared
     resources:
       - path: App/Assets.xcassets
@@ -88,6 +89,7 @@ targets:
           - $(AppIdentifierPrefix)com.inoagent.vpn.shared
     sources:
       - path: PacketTunnel
+        excludes: ["*.plist", "*.entitlements"]
       - path: Shared
     dependencies:
       - package: AmneziaWGApple
@@ -121,7 +123,7 @@ targets:
     deploymentTarget: "17.0"
     sources:
       - path: App
-        excludes: [HomeView.swift, ProfilesView.swift]
+        excludes: ["*.plist", "*.entitlements", HomeView.swift, ProfilesView.swift]
       - path: Shared
     resources:
       - path: App/Assets.xcassets
@@ -151,7 +153,7 @@ targets:
     deploymentTarget: "14.0"
     sources:
       - path: App
-        excludes: [HomeView.swift, ProfilesView.swift]
+        excludes: ["*.plist", "*.entitlements", HomeView.swift, ProfilesView.swift]
       - path: Shared
     resources:
       - path: App/Assets.xcassets
@@ -191,6 +193,7 @@ targets:
     deploymentTarget: "14.0"
     sources:
       - path: PacketTunnel
+        excludes: ["*.plist", "*.entitlements"]
       - path: Shared
     info:
       path: MacTunnel/Info.plist
