@@ -51,11 +51,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
         viewModelScope.launch {
             container.tunnel.connected.collect { connected ->
+                if(connected && _home.value.connection==ConnectionState.Disconnected) _home.value=_home.value.copy(connection=ConnectionState.Connected,selectedProfileId=container.tunnel.activeProfileId ?: _home.value.selectedProfileId,connectedAtMillis=container.tunnel.connectedAtMillis)
                 if(!connected && _home.value.connection==ConnectionState.Connected) _home.value=_home.value.copy(connection=ConnectionState.Disconnected,connectedAtMillis=null,traffic=TunnelTraffic())
             }
         }
         viewModelScope.launch {
             profiles.collect { items ->
+                if(_home.value.connection==ConnectionState.Connected) {
+                    container.tunnel.activeProfileId?.let { _home.value=_home.value.copy(selectedProfileId=it) }
+                    return@collect
+                }
                 if (items.none { it.id==_home.value.selectedProfileId } && items.isNotEmpty()) {
                     _home.value = _home.value.copy(selectedProfileId = items.first().id)
                 }
@@ -157,4 +162,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun consumeMessage() { _home.value = _home.value.copy(message = null) }
     fun showMessage(value: String) { _home.value = _home.value.copy(message = value) }
+    override fun onCleared() { accountController.api.close();super.onCleared() }
 }

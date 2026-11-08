@@ -32,7 +32,7 @@ struct AppleClientView: View {
                     if let url = account.exportURL { ShareLink("Передать в AmneziaWG", item: url).buttonStyle(.bordered) }
                     #endif
                 }
-                HStack { Text("Серверы").font(.title2); Spacer(); Button("Обновить") { Task { await account.refresh() } }.disabled(account.user == nil || account.busy) }
+                HStack { Text("Серверы").font(.title2); Spacer(); Button("Обновить") { Task { await account.refreshConfiguration() } }.disabled(account.user == nil || account.busy) }
                 ForEach(account.servers, id: \.id) { server in
                     Button { account.selectedServerID = server.id } label: {
                         HStack(spacing: 12) {

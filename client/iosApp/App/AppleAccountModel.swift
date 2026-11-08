@@ -18,12 +18,17 @@ import UIKit
     private let keychain = KeychainConfigStore()
     private let profiles: ProfileStore
     private var polling: Task<Void, Never>?
+    private var forceConfigurationFetch = false
+    private var refreshing = false
 
     init(profiles: ProfileStore) {
         self.profiles = profiles
         Task {
             if let token = try? keychain.load(account: "service.token") {
                 api.setToken(value: token)
+                if let raw = try? keychain.load(account: "service.cached-account"), let cached = try? ServiceCacheCodec().decode(value: raw) {
+                    user = cached.user; servers = cached.servers; selectedServerID = cached.servers.first?.id; profiles.activeServiceUserID = cached.user.id
+                }
                 await refresh()
             }
         }
@@ -60,9 +65,12 @@ import UIKit
         catch { message = error.localizedDescription }
     }
     func refresh() async {
-        guard !busy else { return }
-        busy = true; activity = "Обновляем серверы"
-        defer { busy = false }
+        guard !busy && !refreshing else { return }
+        refreshing = true
+        let blocksUI = user == nil
+        if blocksUI { busy = true }
+        activity = "Обновляем серверы"
+        defer { refreshing = false; if blocksUI { busy = false } }
         do { try await loadData() } catch { message = error.localizedDescription }
     }
     private func loadData() async throws {
@@ -71,12 +79,13 @@ import UIKit
         let inbox = try await api.notifications()
         statuses = (try? await api.statuses()) ?? []
         user = current; profiles.activeServiceUserID = current.id; servers = available; notifications = inbox
+        try keychain.save(ServiceCacheCodec().encode(user: current, servers: available), account: "service.cached-account")
         if !available.contains(where: { $0.id == selectedServerID }) { selectedServerID = available.first?.id }
     }
     func logout() {
         guard !busy else { return }
         if profiles.vpn.phase != .disconnected { profiles.vpn.disconnect() }
-        try? keychain.delete(account: "service.token"); api.setToken(value: "")
+        try? keychain.delete(account: "service.token"); try? keychain.delete(account: "service.cached-account"); api.setToken(value: "")
         user = nil; servers = []; notifications = []; selectedServerID = nil; profiles.activeServiceUserID = nil
         if let url = exportURL { try? FileManager.default.removeItem(at: url) }; exportURL = nil
     }
@@ -93,6 +102,15 @@ import UIKit
         busy = true; activity = "Выпускаем или загружаем конфигурацию"; message = nil
         defer { busy = false }
         do {
+            if !forceConfigurationFetch, let cached = profiles.profiles.first(where: { $0.serviceUserID == user.id && $0.serviceServerID == server.id }) {
+                let contents = try keychain.load(account: cached.configAccount)
+                #if COMPANION
+                try export(contents, serverID: server.id)
+                #else
+                try await profiles.vpn.connect(profile: cached)
+                #endif
+                return
+            }
             let defaults = UserDefaults.standard
             let key = "service.device.\(user.id)"
             let bound = (defaults.object(forKey: key) as? NSNumber)?.int64Value
@@ -110,15 +128,20 @@ import UIKit
             defaults.set(NSNumber(value: device.id), forKey: key)
             let config = try await api.configuration(deviceId: device.id, serverId: server.id, requestKey: "apple-\(UUID().uuidString)")
             let profile = try profiles.saveServiceConfiguration(userID: user.id, serverID: server.id, name: server.name, contents: config.config)
+            forceConfigurationFetch = false
             #if COMPANION
-            if let previous = exportURL { try? FileManager.default.removeItem(at: previous) }
-            let url = FileManager.default.temporaryDirectory.appendingPathComponent("inoagent-\(server.id).conf")
-            try config.config.write(to: url, atomically: true, encoding: .utf8)
-            try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: url.path)
-            exportURL = url
+            try export(config.config, serverID: server.id)
             #else
             try await profiles.vpn.connect(profile: profile)
             #endif
         } catch { message = error.localizedDescription }
     }
+    private func export(_ contents: String, serverID: Int64) throws {
+        if let previous = exportURL { try? FileManager.default.removeItem(at: previous) }
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("inoagent-\(serverID).conf")
+        try contents.write(to: url, atomically: true, encoding: .utf8)
+        try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: url.path)
+        exportURL = url
+    }
+    func refreshConfiguration() async { await refresh(); forceConfigurationFetch = true }
 }

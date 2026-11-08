@@ -34,7 +34,13 @@ class AccountController(
             val token=runCatching { vault.read("access-token") }.getOrNull()
             if(!token.isNullOrBlank()) {
                 api.setToken(token)
-                runOperation("Восстанавливаем аккаунт") { refreshData() }
+                runCatching { vault.read("cached-account")?.let { ServiceCacheCodec().decode(it) } }.getOrNull()?.let { cached ->
+                    mutable.value=state.value.copy(user=cached.user,servers=cached.servers,selectedServerId=vault.read("server-${cached.user.id}")?.toLongOrNull() ?: cached.servers.firstOrNull()?.id,deviceId=vault.read("device-${cached.user.id}")?.toLongOrNull())
+                }
+                runOperation("Восстанавливаем аккаунт") {
+                    val refreshed=withTimeoutOrNull(8_000) { refreshData();true } ?: false
+                    if(!refreshed) mutable.value=state.value.copy(message=if(state.value.user!=null) "Список временно недоступен. Сохранённые конфигурации доступны" else "Сервис временно недоступен. Попробуйте войти позже")
+                }
             }
         }
         scope.launch {
@@ -66,7 +72,7 @@ class AccountController(
     }
     fun refresh() {
         if(state.value.busy) return
-        operation=scope.launch { runOperation("Обновляем серверы") { refreshData() } }
+        operation=scope.launch { runOperation("Обновляем серверы") { refreshData();state.value.user?.let { user->state.value.servers.forEach { vault.remove("remote-${user.id}-${it.id}") } } } }
     }
     private suspend fun refreshData() {
         val user=api.me();val servers=api.servers()
@@ -75,6 +81,7 @@ class AccountController(
         mutable.value=state.value.copy(user=user,servers=servers,notifications=notifications,statuses=statuses,
             selectedServerId=(state.value.selectedServerId ?: vault.read("server-${user.id}")?.toLongOrNull())?.takeIf { id->servers.any { it.id==id } } ?: servers.firstOrNull()?.id,
             deviceId=vault.read("device-${user.id}")?.toLongOrNull())
+        vault.write("cached-account",ServiceCacheCodec().encode(user,servers))
     }
     fun select(serverId:Long) { if(!state.value.busy) { mutable.value=state.value.copy(selectedServerId=serverId);state.value.user?.let { vault.write("server-${it.id}",serverId.toString()) } } }
     fun clearMessage() { mutable.value=state.value.copy(message=null) }
@@ -82,22 +89,29 @@ class AccountController(
         runCatching { api.readNotification(id);mutable.value=state.value.copy(notifications=state.value.notifications.map { if(it.id==id) it.copy(read=true) else it }) }
     }
     fun logout() {
-        operation?.cancel();api.setToken("");vault.remove("access-token");mutable.value=AccountState()
+        operation?.cancel();api.setToken("");vault.remove("access-token");vault.remove("cached-account");mutable.value=AccountState()
     }
     suspend fun prepare():PreparedConfiguration? {
         var prepared:PreparedConfiguration?=null
         runOperation("Готовим конфигурацию для этого устройства") {
             val user=state.value.user ?: error("Войдите в аккаунт")
             val server=state.value.servers.firstOrNull { it.id==state.value.selectedServerId } ?: error("Выберите сервер")
+            val bound=vault.read("device-${user.id}")?.toLongOrNull()
+            val cached=vault.read("remote-${user.id}-${server.id}")
+            if(bound!=null && !cached.isNullOrBlank()) {
+                AmneziaConfigMetadataParser.parse("${server.name}.conf",cached)
+                prepared=PreparedConfiguration(user.id,bound,server,cached)
+                return@runOperation
+            }
             val devices=api.devices()
             val installation=vault.read("installation") ?: randomKey().also { vault.write("installation",it) }
             val name="${deviceName.take(70)} · ${installation.take(6)}"
-            val bound=vault.read("device-${user.id}")?.toLongOrNull()
             val device=devices.firstOrNull { it.id==bound } ?: devices.firstOrNull { it.name==name } ?: api.createDevice(name)
             vault.write("device-${user.id}",device.id.toString())
             mutable.value=state.value.copy(deviceId=device.id,activity="Выпускаем или загружаем конфигурацию")
             val config=api.configuration(device.id,server.id,"app-${randomKey()}")
             AmneziaConfigMetadataParser.parse("${server.name}.conf",config.config)
+            vault.write("remote-${user.id}-${server.id}",config.config)
             prepared=PreparedConfiguration(user.id,device.id,server,config.config)
         }
         return prepared
@@ -108,7 +122,7 @@ class AccountController(
         try { block() }
         catch(e:CancellationException) { throw e }
         catch(e:Exception) {
-            if(e is ServiceException && e.status==401) { api.setToken("");vault.remove("access-token");mutable.value=AccountState(message=e.message) }
+            if(e is ServiceException && e.status==401) { api.setToken("");vault.remove("access-token");vault.remove("cached-account");mutable.value=AccountState(message=e.message) }
             else mutable.value=state.value.copy(message=if(e is ServiceException || e is IllegalArgumentException) e.message else "Не удалось связаться с сервисом. Проверьте интернет и повторите")
         }
         finally { mutable.value=state.value.copy(busy=false,activity="");mutex.unlock() }

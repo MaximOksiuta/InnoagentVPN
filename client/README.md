@@ -19,6 +19,11 @@ visible; queue timeouts leave work on the server for the next attempt.
 Android and Windows share Compose UI. API/models/provisioning are shared by
 all four platforms. Apple uses native SwiftUI and Network Extension.
 
+Saved account metadata and downloaded configs are cached in each platform's
+protected store. Reconnecting can use a previously downloaded config when the
+site cannot be reached. Refresh requests current server data and makes the next
+connection fetch the server's current config. Logout clears the saved session.
+
 ## Platforms
 
 | Platform | Client | Tunnel |

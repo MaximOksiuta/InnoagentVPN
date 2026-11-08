@@ -7,7 +7,10 @@ appropriate team; Companion has no VPN extension entitlement.
 Verified locally so far:
 - Android debug APK builds; installs and starts on API 36 emulator; no
   AndroidRuntime fatal error after launch.
-- Shared JVM tests: 2 original parser tests + 6 service API tests.
+- Shared JVM tests: 2 original parser tests + 6 service API tests + offline cache
+  and logout isolation test. Desktop: 2 profile persistence/deletion tests.
+- Android device test on API 36: Room migration 1→2 preserves the existing
+  encrypted profile and adds nullable account/server columns (1 test passed).
 - Desktop JVM Kotlin compilation, including the Windows DPAPI/service adapter.
 - Kotlin compilation for iOS Simulator ARM64 and macOS ARM64.
 - Swift syntax parsing with `-Xcc -fno-implicit-module-maps` avoids a duplicate
@@ -17,8 +20,19 @@ Verified locally so far:
 - Desktop preview runs on Mac. This preview has memory-only credentials and
   intentionally delegates actual macOS VPN support to the Apple target.
 
-Remaining platform checks must be reported explicitly: Windows UAC/service/
-Wintun and installer execution; Apple Xcode builds, signing, device entitlement
-provisioning and a real handshake. Passing common tests alone proves none of
-those. Local jpackage Mac preview was ad-hoc signed after removing FinderInfo
+GitHub platform check 42422776012 built Android, Windows MSI/EXE, the free
+iOS Companion, native iOS tunnel and native macOS tunnel with Xcode 16.4.
+Apple builds use CODE_SIGNING_ALLOWED=NO; they do not establish device signing
+or a working physical-device VPN. Windows installers are built on Windows,
+but UAC/driver/traffic behavior still awaits the user's Windows computer.
+Local jpackage Mac preview was ad-hoc signed after removing FinderInfo
 from its generated bundle; it is not a signed/distributable Apple VPN app.
+
+Live API smoke test used an explicitly approved temporary non-administrator
+account. Shared AccountController logged in, loaded the active server,
+bound its own device (#67), generated a London config through the queue and
+reused it on the next request. Raw AWG content was not logged. QA account,
+device, peer, config and queue records were removed. Full pre-existing DB rows
+were compared against the fresh backup: unchanged; integrity_check=ok.
+Post-cleanup counts: 15 users, 54 devices, 91 configs, 5 server rows. AWG ifindex
+remained 18. Backup: /root/backups/inoagent-before-appqa-20261108/app.db on 72.56.33.224.
