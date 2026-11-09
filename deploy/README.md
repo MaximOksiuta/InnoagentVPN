@@ -33,11 +33,13 @@ Administrators can restore an archived row after review with `UPDATE servers SET
 
 ## Monitoring
 
-`GET /api/servers/status` requires an authenticated account and returns only public list metadata, TCP reachability of the configured SSH port, timings and approved browser probe URLs. Results are cached for 25 seconds; UI refreshes every 30 seconds.
-`SERVER_PROBE_HOSTS` is an explicit comma-separated allowlist of provisioned IPv4 addresses. Initially only `186.246.18.21` is provisioned. Its two existing cards share one probe host.
-The separate Caddy service exposes `https://186-246-18-21.sslip.io/_inoagent/health` with automatic TLS and CORS restricted to the website origin. It exposes no credentials or VPN configuration. Ports 80/443 are required for certificate issuance/renewal. The sslip.io DNS service and certificate authority are external dependencies.
-An unprovisioned host shows “Не настроено”; browser network, TLS or CORS failures show “Не подтверждено”, not a false claim that the VPN is down. TCP and HTTPS availability do not prove a functioning AWG tunnel.
-The older nodes were not provisioned: `77.110.110.141` timed out over SSH, and `194.135.38.145` presented a changed SSH host key. Verify ownership and fingerprint before modifying them.
+The site and bot use `GET /api/servers/status` for ICMP echo and TCP reachability of the stored SSH address and port. The API requires authentication, exposes no credentials, and caches samples for 25 seconds. The backend image supplies `iputils-ping`. A missing ICMP reply is reported separately from SSH reachability.
+
+The browser tries the HTTPS health URL derived from each public IPv4 address automatically. When HTTPS, TLS, or CORS prevents a result it shows “Не подтверждено”. A node can serve the optional `/_inoagent/health` endpoint with a valid certificate and website CORS to provide a positive browser result. The server-side ICMP and SSH checks require no per-node setup.
+
+The bot polls the same measurements every 30 seconds and notifies approved administrators with a linked Telegram ID or a contact-verified bot session after two fresh samples agree on a change. It keeps its baseline in `/app/data/server-status-alerts.json`. Initial readings and repeated cached samples do not trigger alerts.
+
+On the Vienna host, apply `bot-20261109-monitor.override.yml` over the existing bot Compose file. The bot has a dedicated bridge that sends outbound traffic from `83.141.80.158`, the address with a working route to the site API. Its existing data volume is retained.
 
 ## Design
 

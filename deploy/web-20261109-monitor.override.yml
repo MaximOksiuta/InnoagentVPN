@@ -1,0 +1,6 @@
+services:
+  backend:
+    image: innoagentvpn-backend:release-20261109-monitor
+    stop_grace_period: 45s
+  frontend:
+    image: innoagentvpn-frontend:release-20261109-monitor
