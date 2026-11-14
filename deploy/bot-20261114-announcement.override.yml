@@ -1,0 +1,10 @@
+services:
+  tg_bot:
+    image: inoagentbot-tg_bot:release-20261114-announcement
+    networks:
+      - announcement-egress
+networks:
+  announcement-egress:
+    driver: bridge
+    driver_opts:
+      com.docker.network.host_ipv4: "83.141.82.129"
